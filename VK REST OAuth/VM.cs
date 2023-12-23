@@ -63,11 +63,11 @@ namespace VK_REST_OAuth
 
                 string methodUriT = @"https://api.vk.com/method/{0}?{1}&access_token="+access_token+"&v=5.154";
 
-                response = await GET(string.Format(methodUriT, "friends.getOnline", "user_id="+user_id+"&online_mobile=1"));
-                MessageBox.Show(response.GetProperty("response").ToString(), "friends.getOnline");
+                response = await GET(string.Format(methodUriT, "account.getBanned", string.Empty));
+                MessageBox.Show(response.GetProperty("response").ToString(), "account.getBanned");
 
-                response = await GET(string.Format(methodUriT, "database.getMetroStations", "city_id=1&count=10"));
-                MessageBox.Show(response.GetProperty("response").ToString(), "database.getMetroStations");
+                response = await GET(string.Format(methodUriT, "account.getInfo", string.Empty));
+                MessageBox.Show(response.GetProperty("response").ToString(), "account.getInfo");
             }
         }
 
