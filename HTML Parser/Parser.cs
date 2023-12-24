@@ -16,12 +16,12 @@ namespace HTML_Parser
             // Указываем путь до браузера (путь установки по умолчанию
             var chromeDriverService = ChromeDriverService.CreateDefaultService(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             // Отключение вывода диагности в консоль (можно не отключать, если нужно посмотреть ошибки на странице и тд)
-            chromeDriverService.HideCommandPromptWindow = true;
-            chromeDriverService.SuppressInitialDiagnosticInformation = true;
+            //chromeDriverService.HideCommandPromptWindow = true;
+            //chromeDriverService.SuppressInitialDiagnosticInformation = true;
             
             var options = new ChromeOptions();
             // Отключаем отображение интерфейса браузера. Для тестирования рекомендуется оставить отображение интерфейса.
-            options.AddArguments(new List<string>() { "headless" });
+            //options.AddArguments(new List<string>() { "headless" });
             // Создаём драйвер браузера.
             using IWebDriver driver = new ChromeDriver(chromeDriverService, options);
             // Установка таймаута ожидания для корректного парсинга догружаемых элементов.

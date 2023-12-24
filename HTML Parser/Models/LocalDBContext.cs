@@ -21,11 +21,7 @@ public partial class LocalDBContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-               .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-               .AddUserSecrets<LocalDBContext>()
-               .Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString(nameof(LocalDBContext)));
+        optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Ais6Lab;Integrated Security=True;MultipleActiveResultSets=True");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

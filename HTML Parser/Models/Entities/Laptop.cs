@@ -28,15 +28,15 @@ public partial class Laptop
     [Column("Processor_model")]
     [StringLength(50)]
     [Unicode(false)]
-    public string ProcessorModel { get; set; } = null!;
+    public string? ProcessorModel { get; set; }
 
     [Column("Video_card_type")]
     [StringLength(50)]
     [Unicode(false)]
-    public string VideoCardType { get; set; } = null!;
+    public string? VideoCardType { get; set; }
 
     [Column("Video_card_model")]
     [StringLength(50)]
     [Unicode(false)]
-    public string VideoCardModel { get; set; } = null!;
+    public string? VideoCardModel { get; set; }
 }
