@@ -1,14 +1,15 @@
 ﻿using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
+using System;
 
-namespace COMManager
+namespace COM
 {
     internal class Program
     {
         static void Main()
         {
             // Открываем приложение Word
-            Word.Application wordApp = new();
+            Word.Application wordApp = new Word.Application();
             // wordApp.Visible = true; // Отобразить окно приложения
 
             // Относительные пути высчитываются от папки Документы, а не от папки с раположением .exe файла
@@ -45,7 +46,7 @@ namespace COMManager
             }
 
             // Запускаем приложение и создаём новую книгу таблиц
-            Excel.Application excelApp = new();
+            Excel.Application excelApp = new Excel.Application();
             Excel.Workbook book = excelApp.Workbooks.Add();
             Excel.Worksheet ws = book.ActiveSheet;
 
