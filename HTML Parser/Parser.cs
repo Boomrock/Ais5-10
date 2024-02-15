@@ -25,9 +25,9 @@ namespace HTML_Parser
             // Создаём драйвер браузера.
             using IWebDriver driver = new ChromeDriver(chromeDriverService, options);
             // Установка таймаута ожидания для корректного парсинга догружаемых элементов.
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl(url);
-            List<string> alist = driver.FindElements(By.CssSelector("div.app-catalog-1tp0ino.e1an64qs0 a")).Select(elem => elem.GetAttribute("href") + "properties/").ToList();
+            List<string> alist = driver.FindElements(By.CssSelector("div.app-catalog-175rvmj.evckbd10 a")).Select(elem => elem.GetAttribute("href") + "properties/").ToList();
             List<Laptop> laptops;
             if (isUseAS)
             { // Вариант с использованием AngleSharp. Быстрее
@@ -35,18 +35,17 @@ namespace HTML_Parser
                 
                 List<string> htmls = new();
                 foreach (var a in alist.Take(10))
-                { // Сохраняем код каждой необходимой страницы
+                { 
                     Console.WriteLine(a);
                     driver.Navigate().GoToUrl(a);
-                    // Следующая строка нужна для того чтобы сработал таймер ожидания и были догружены нужные элементы сайта
-                    driver.FindElement(By.CssSelector("span.app-catalog-1eqtzki")); // Ищем первый попавшийся элемент из таблицы характеристик
+
+                    driver.FindElement(By.CssSelector("span.app-catalog-ajic6a")); 
                     htmls.Add(driver.PageSource);
                 }
-                // Парсим все созранённые страницы
                 laptops = AngleSharpParse(parser, htmls);
             }
             else
-            { // Вариант на чистом Selenium. Медленнее
+            { 
                 laptops = SeleniumParse(driver, alist);
             }
             using var dbcon = new LocalDBContext();
