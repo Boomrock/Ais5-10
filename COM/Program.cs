@@ -13,21 +13,24 @@ namespace COM
             // wordApp.Visible = true; // Отобразить окно приложения
 
             // Относительные пути высчитываются от папки Документы, а не от папки с раположением .exe файла
-            object file = @"C:\Users\федор\source\repos\AoIS\COMManager\temp.docx";
+            object file = @"C:\Users\федор\source\repos\AoIS\COM\temp.docx";
             // Открываем документ
             Word.Document wDoc = wordApp.Documents.Add(ref file, false, Word.WdNewDocumentType.wdNewBlankDocument, true);
             // Заменяем слова-теги на нужные значения
-            Replace("{ЖИВОТНОЕ}", "жирафы");
-            Replace("{ДЕЙСТВИЕ}", "выпивать");
-            Replace("{КОЛ-ВО РАЗ}", "рассчитаны");
-            Replace("{РЕЗУЛЬТАТ ДЕЙСТВИЯ}", "жирафы");
-            // Редактируем содержимое закладки
-            wDoc.Bookmarks["mark"].Range.Text = "Тут была закладка";
+            Replace("{СОБЫТИЕ}", "извержение вулкана");
+            Replace("{ДЕЙСТВИЕ}", "привлекло внимание");
+            Replace("{СОБЫТИЕ}", "извержение вулкана");
+            Replace("{РЕАКЦИЯ}", "панику");
+            Replace("{НАБЛЮДАТЕЛИ}", "местные жители");
+            Replace("{КОЛ-ВО РАЗ}", "два раза");
+            Replace("{РЕЗУЛЬТАТ ДЕЙСТВИЯ}", "необходимость эвакуации");
+                        // Редактируем содержимое закладки
+                        wDoc.Bookmarks["mark"].Range.Text = "Тут была закладка";
 
             try
             {
                 // Сохраняем файл (если не указать расширение, то будет использоваться .docx)
-                wDoc.SaveAs2(@"D:\source\repos\AoIS\COMManager\bin\Debug\net8.0\outdocx");
+                wDoc.SaveAs2(@"C:\Users\федор\source\repos\AoIS\COM\output.docx");
             }
             catch (Exception ex)
             {
@@ -52,8 +55,8 @@ namespace COM
 
             for (int i = 1, num = 60; i < 10; i++, num--)
             {
-                ws.Cells[1, i].Value = i;
-                ws.Cells[2, i].Value = num;
+                ws.Cells[1, i] = i;
+                ws.Cells[2, i] = num;
             }
             Excel.Range cell = ws.Cells[3, 1];
             cell.Formula = "=SUM(A1:J1)";
@@ -75,7 +78,7 @@ namespace COM
 
             try
             {
-                ws.SaveAs2(@"D:\source\repos\AoIS\COMManager\bin\Debug\net8.0\outxls");
+                ws.SaveAs2(@"C:\Users\федор\source\repos\AoIS\COM\output.xls");
             }
             catch (Exception ex)
             {
