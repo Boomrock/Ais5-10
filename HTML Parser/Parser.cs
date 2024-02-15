@@ -25,7 +25,7 @@ namespace HTML_Parser
             // Создаём драйвер браузера.
             using IWebDriver driver = new ChromeDriver(chromeDriverService, options);
             // Установка таймаута ожидания для корректного парсинга догружаемых элементов.
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             driver.Navigate().GoToUrl(url);
             List<string> alist = driver.FindElements(By.CssSelector("div.app-catalog-1tp0ino.e1an64qs0 a")).Select(elem => elem.GetAttribute("href") + "properties/").ToList();
             List<Laptop> laptops;
