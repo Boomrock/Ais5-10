@@ -10,12 +10,12 @@ namespace SOAP_Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly SoapServiceClient calculator;
+        private readonly CalculatorSoapClient calculator;
 
         public MainWindow()
         {
             InitializeComponent();
-            calculator = new(SoapServiceClient.EndpointConfiguration.BasicHttpBinding_ISoapService_soap);
+            calculator = new(CalculatorSoapClient.EndpointConfiguration.CalculatorSoap);
         }
 
         private async void ButtonAdd_Click(object sender, RoutedEventArgs e)
