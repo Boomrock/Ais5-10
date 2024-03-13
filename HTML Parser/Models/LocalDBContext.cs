@@ -1,37 +1,21 @@
-﻿using HTML_Parser.Models.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace HTML_Parser.Models;
 
 public partial class LocalDBContext : DbContext
 {
-    public LocalDBContext()
-    {
-    }
 
-    public LocalDBContext(DbContextOptions<LocalDBContext> options)
-        : base(options)
-    {
-    }
-
-    public virtual DbSet<Laptop> Laptops { get; set; }
-
-    public virtual DbSet<Tv> Tvs { get; set; }
+    public DbSet<Group> Groups { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Ais6Lab;Integrated Security=True;MultipleActiveResultSets=True");
+        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Ais6Lab;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Laptop>(entity =>
-        {
-            entity.Property(e => e.IdLaptop).HasDefaultValueSql("(newid())");
-        });
-
-        modelBuilder.Entity<Tv>(entity =>
+        modelBuilder.Entity<Group>(entity =>
         {
             entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
