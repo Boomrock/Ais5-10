@@ -1,6 +1,7 @@
 ﻿using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
 using System;
+using System.IO;
 
 namespace COM
 {
@@ -13,9 +14,12 @@ namespace COM
             // wordApp.Visible = true; // Отобразить окно приложения
 
             // Относительные пути высчитываются от папки Документы, а не от папки с раположением .exe файла
-            object file = @"C:\Users\федор\source\repos\AoIS\COM\temp.docx";
+            var localPath = @".\temp.docx";
+            object fullPath = Path.GetFullPath(localPath);
+
+            Console.WriteLine();
             // Открываем документ
-            Word.Document wDoc = wordApp.Documents.Add(ref file, false, Word.WdNewDocumentType.wdNewBlankDocument, true);
+            Word.Document wDoc = wordApp.Documents.Add(ref fullPath, false, Word.WdNewDocumentType.wdNewBlankDocument, true);
             // Заменяем слова-теги на нужные значения
             Replace("{СОБЫТИЕ}", "извержение вулкана");
             Replace("{ДЕЙСТВИЕ}", "привлекло внимание");
@@ -30,7 +34,7 @@ namespace COM
             try
             {
                 // Сохраняем файл (если не указать расширение, то будет использоваться .docx)
-                wDoc.SaveAs2(@"C:\Users\федор\source\repos\AoIS\COM\output.docx");
+                wDoc.SaveAs2(@".\output.docx");
             }
             catch (Exception ex)
             {
@@ -78,7 +82,7 @@ namespace COM
 
             try
             {
-                ws.SaveAs2(@"C:\Users\федор\source\repos\AoIS\COM\output.xls");
+                ws.SaveAs2(@".\output.xls");
             }
             catch (Exception ex)
             {
