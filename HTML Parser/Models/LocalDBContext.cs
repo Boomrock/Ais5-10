@@ -7,6 +7,7 @@ public partial class LocalDBContext : DbContext
 {
 
     public DbSet<Group> Groups { get; set; }
+    public DbSet<MigrationTable> MigrationTables { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
